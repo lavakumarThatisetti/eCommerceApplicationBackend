@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/postgres
+    username: postgres
+    password: masterpassword287
+    driverClassName: org.postgresql.Driver
+    initialization-mode: always
+  jpa:
+    generte-ddl : false
+    hibernate:
+      ddl-auto: none
+    show_sql: true
+    database-platform : org.hibernate.dialect.PostgreSQLDialect
