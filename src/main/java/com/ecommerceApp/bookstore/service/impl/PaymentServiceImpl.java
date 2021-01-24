@@ -29,6 +29,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentOrderResponse paymentService(PaymentModel paymentModel) {
         System.out.println(paymentModel);
+        System.out.println(appConfig.getAppUrl());
         Instamojo api;
         try {
             ApiContext context = ApiContext.create(
