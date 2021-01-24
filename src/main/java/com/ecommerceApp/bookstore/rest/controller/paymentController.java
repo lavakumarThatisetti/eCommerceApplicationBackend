@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.UUID;
 
+@CrossOrigin(origins = "*", allowedHeaders = "*")
 @RestController
 @RequestMapping("/payment")
 public class paymentController {
@@ -28,7 +29,6 @@ public class paymentController {
         this.paymentService=paymentService;
     }
 
-    @CrossOrigin(origins = "https://ekart-books-zonee.herokuapp.com/")
     @PostMapping(produces = "application/json", value = "/paymentGateway")
     public ResponseEntity<PaymentOrderResponse> paymentGateway(@Valid @RequestBody Orders orders, BindingResult bindingResult){
         System.out.println(orders.getOrderId());
