@@ -5,7 +5,6 @@ import lombok.Data;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
-import java.util.Date;
 
 @Data
 @Entity
@@ -41,6 +40,9 @@ public class PaymentModel {
     @Column(name= "amount")
     @NotNull
     private double amount;
+
+    @Column(name= "ordered_books")
+    private String orderedBooks;
 
     @Column(name= "description")
     private String description;

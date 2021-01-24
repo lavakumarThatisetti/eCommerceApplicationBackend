@@ -15,21 +15,17 @@ import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.List;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("/bookStore")
 public class controller {
     private OrderRepository orderRepository;
     private PersonRepository personRepository;
-    private PaymentService paymentService;
-    UUID uuid = UUID.randomUUID();
 
     @Autowired
-    public controller(OrderRepository orderRepository, PersonRepository personRepository, PaymentService paymentService){
+    public controller(OrderRepository orderRepository, PersonRepository personRepository){
         this.orderRepository=orderRepository;
         this.personRepository=personRepository;
-        this.paymentService=paymentService;
     }
 
     @PostMapping(produces = "application/json", value = "/saveOrder")
@@ -65,25 +61,4 @@ public class controller {
         }
         return ResponseEntity.ok(personRepository.save(persons));
     }
-    @PostMapping(produces = "application/json", value = "/paymentGateway")
-    public ResponseEntity<PaymentOrderResponse> paymentGateway(@Valid @RequestBody Orders orders, BindingResult bindingResult){
-        Persons user = personRepository.findByPersonId(orders.getPersonId());
-        PaymentModel paymentModel =PaymentModel.builder()
-                .orderId(orders.getOrderId())
-                .name(user.getUserName())
-                .email(user.getEmail())
-                .phoneNumber(user.getPhoneNumber())
-                .currency("INR")
-                .amount(orders.getTotalMoney())
-                .description("Secure Payment")
-                .transactionId(String.valueOf(uuid))
-                .createdAt("")
-                .resourceUri("")
-                .status(orders.getStatus())
-                .build();
-        System.out.println(paymentModel);
-        PaymentOrderResponse paymentOrderResponse = paymentService.paymentService(paymentModel);
-        return ResponseEntity.ok(paymentOrderResponse);
-    }
-
 }

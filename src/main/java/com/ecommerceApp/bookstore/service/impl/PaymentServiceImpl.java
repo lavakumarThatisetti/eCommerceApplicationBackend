@@ -40,7 +40,7 @@ public class PaymentServiceImpl implements PaymentService {
             order.setCurrency(paymentModel.getCurrency());
             order.setAmount(paymentModel.getAmount());
             order.setDescription(paymentModel.getDescription());
-            order.setRedirectUrl("http://localhost:4200/paymentSuccess");
+            order.setRedirectUrl("http://localhost:4200/yourOrders");
             order.setWebhookUrl("https://github.com/lavakumarThatisetti");
             order.setTransactionId(paymentModel.getTransactionId());
 
@@ -53,6 +53,7 @@ public class PaymentServiceImpl implements PaymentService {
             paymentModel.setResourceUri(paymentOrderResponse.getPaymentOrder().getResourceUri());
             System.out.println(paymentModel);
             paymentRepository.save(paymentModel);
+            System.out.println(paymentOrderResponse);
             return paymentOrderResponse;
 
         } catch (HTTPException e) {

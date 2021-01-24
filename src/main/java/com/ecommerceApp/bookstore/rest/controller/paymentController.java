@@ -10,10 +10,7 @@ import com.instamojo.wrapper.model.PaymentOrderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
 import java.util.UUID;
@@ -22,13 +19,11 @@ import java.util.UUID;
 @RequestMapping("/payment")
 public class paymentController {
 
-    private OrderRepository orderRepository;
     private PersonRepository personRepository;
     private PaymentService paymentService;
 
     @Autowired
-    public paymentController(OrderRepository orderRepository, PersonRepository personRepository,PaymentService paymentService){
-        this.orderRepository=orderRepository;
+    public paymentController(PersonRepository personRepository,PaymentService paymentService){
         this.personRepository=personRepository;
         this.paymentService=paymentService;
     }
@@ -41,6 +36,7 @@ public class paymentController {
         UUID uuid = UUID.randomUUID();
         PaymentModel paymentModel =PaymentModel.builder()
                 .orderId(orders.getOrderId())
+                .orderedBooks(orders.getBookIds())
                 .name(user.getUserName())
                 .email(user.getEmail())
                 .phoneNumber(user.getPhoneNumber())

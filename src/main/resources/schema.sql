@@ -34,6 +34,7 @@ CREATE TABLE IF NOT EXISTS payment_info
    transaction_id character varying(40) NOT NULL,
    created_at character varying(40) Null,
    resource_uri TEXT NULL,
+   ordered_books TEXT NOT NULL,
    status character varying(40) NULL,
    PRIMARY KEY (id),
    CONSTRAINT fk_order
