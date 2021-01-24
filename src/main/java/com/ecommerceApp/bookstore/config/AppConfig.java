@@ -12,9 +12,14 @@ import javax.validation.constraints.NotNull;
 public class AppConfig {
 
     @NotNull
-    private String appUrl;
+    private String url;
 
-    public String getAppUrl() {
-        return appUrl;
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url){
+        this.url =url;
+
     }
 }

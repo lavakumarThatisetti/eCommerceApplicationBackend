@@ -29,7 +29,7 @@ public class PaymentServiceImpl implements PaymentService {
     @Override
     public PaymentOrderResponse paymentService(PaymentModel paymentModel) {
         System.out.println(paymentModel);
-        System.out.println(appConfig.getAppUrl());
+        System.out.println(appConfig.getUrl());
         Instamojo api;
         try {
             ApiContext context = ApiContext.create(
@@ -42,7 +42,7 @@ public class PaymentServiceImpl implements PaymentService {
             order.setCurrency(paymentModel.getCurrency());
             order.setAmount(paymentModel.getAmount());
             order.setDescription(paymentModel.getDescription());
-            order.setRedirectUrl(appConfig.getAppUrl()+"yourOrders");
+            order.setRedirectUrl(appConfig.getUrl()+"yourOrders");
             order.setWebhookUrl("https://github.com/lavakumarThatisetti");
             order.setTransactionId(paymentModel.getTransactionId());
 
