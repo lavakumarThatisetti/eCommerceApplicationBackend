@@ -28,6 +28,7 @@ public class paymentController {
         this.paymentService=paymentService;
     }
 
+    @CrossOrigin(origins = "https://ekart-books-zonee.herokuapp.com/")
     @PostMapping(produces = "application/json", value = "/paymentGateway")
     public ResponseEntity<PaymentOrderResponse> paymentGateway(@Valid @RequestBody Orders orders, BindingResult bindingResult){
         System.out.println(orders.getOrderId());

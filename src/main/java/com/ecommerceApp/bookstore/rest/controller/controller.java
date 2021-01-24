@@ -27,7 +27,7 @@ public class controller {
         this.orderRepository=orderRepository;
         this.personRepository=personRepository;
     }
-
+    @CrossOrigin(origins = "https://ekart-books-zonee.herokuapp.com/")
     @PostMapping(produces = "application/json", value = "/saveOrder")
     public ResponseEntity<Orders> saveOrder(@Valid @RequestBody Orders orders, BindingResult bindingResult){
         try {
@@ -40,16 +40,19 @@ public class controller {
         Orders savedOrder =  orderRepository.save(orders);
         return ResponseEntity.ok(savedOrder);
     }
+    @CrossOrigin(origins = "https://ekart-books-zonee.herokuapp.com/")
     @GetMapping(value = "/getUser/{email}")
     public ResponseEntity<Integer> getUser(@PathVariable("email") String email){
         Persons persons = personRepository.findByEmail(email);
         return ResponseEntity.ok(persons.getPersonId());
     }
+    @CrossOrigin(origins = "https://ekart-books-zonee.herokuapp.com/")
     @GetMapping(value = "/getUsers")
     public ResponseEntity<List<Persons>> getUsers(){
         List<Persons> persons = personRepository.findAll();
         return ResponseEntity.ok(persons);
     }
+    @CrossOrigin(origins = "https://ekart-books-zonee.herokuapp.com/")
     @PostMapping(produces = "application/json", value = "/saveUser")
     public ResponseEntity<Persons> saveUser(@Valid @RequestBody Persons persons, BindingResult bindingResult){
         try {
