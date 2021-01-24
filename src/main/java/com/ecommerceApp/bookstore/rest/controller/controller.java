@@ -59,6 +59,13 @@ public class controller {
         }catch (Exception e) {
             ResponseEntity.ok(e.getMessage());
         }
-        return ResponseEntity.ok(personRepository.save(persons));
+        System.out.println(persons);
+        Persons persons1=null;
+        try{
+            persons1 = personRepository.save(persons);
+        }catch (Exception e ){
+            System.out.println(e.getMessage());
+        }
+        return ResponseEntity.ok(persons1);
     }
 }
