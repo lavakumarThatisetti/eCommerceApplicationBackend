@@ -41,7 +41,7 @@ public class PaymentServiceImpl implements PaymentService {
             order.setCurrency(paymentModel.getCurrency());
             order.setAmount(paymentModel.getAmount());
             order.setDescription(paymentModel.getDescription());
-            order.setRedirectUrl(appConfig.getAppUrl()+"/yourOrders");
+            order.setRedirectUrl(appConfig.getAppUrl()+"yourOrders");
             order.setWebhookUrl("https://github.com/lavakumarThatisetti");
             order.setTransactionId(paymentModel.getTransactionId());
 

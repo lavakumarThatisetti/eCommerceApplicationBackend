@@ -13,3 +13,6 @@ spring:
         use_jdbc_metadata_defaults: false
     show_sql: true
     database-platform : org.hibernate.dialect.PostgreSQL95Dialect
+
+app:
+  url: https://ekart-books-zonee.herokuapp.com/
