@@ -1,5 +1,6 @@
 package com.ecommerceApp.bookstore.service.impl;
 
+import com.ecommerceApp.bookstore.config.AppConfig;
 import com.ecommerceApp.bookstore.model.PaymentModel;
 import com.ecommerceApp.bookstore.repository.PaymentRepository;
 import com.ecommerceApp.bookstore.service.PaymentService;
@@ -13,17 +14,16 @@ import com.instamojo.wrapper.model.PaymentOrder;
 import com.instamojo.wrapper.model.PaymentOrderResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import java.util.UUID;
-
 @Service
 public class PaymentServiceImpl implements PaymentService {
 
-    PaymentRepository paymentRepository;
+    private final PaymentRepository paymentRepository;
+    private final AppConfig appConfig;
 
     @Autowired
-    public PaymentServiceImpl(PaymentRepository paymentRepository){
+    public PaymentServiceImpl(PaymentRepository paymentRepository,AppConfig appConfig){
         this.paymentRepository=paymentRepository;
+        this.appConfig = appConfig;
     }
     @Override
     public PaymentOrderResponse paymentService(PaymentModel paymentModel) {
@@ -40,7 +40,7 @@ public class PaymentServiceImpl implements PaymentService {
             order.setCurrency(paymentModel.getCurrency());
             order.setAmount(paymentModel.getAmount());
             order.setDescription(paymentModel.getDescription());
-            order.setRedirectUrl("http://localhost:4200/yourOrders");
+            order.setRedirectUrl(appConfig.getAppUrl()+"/yourOrders");
             order.setWebhookUrl("https://github.com/lavakumarThatisetti");
             order.setTransactionId(paymentModel.getTransactionId());
 
